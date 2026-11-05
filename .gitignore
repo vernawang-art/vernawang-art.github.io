@@ -1,0 +1,10 @@
+# 白名單：預設排除全部，只開放網站需要的檔案
+*
+!*/
+!*.html
+!css/*.css
+!js/*.js
+!images/*.webp
+!images/*.svg
+!.gitignore
+!.nojekyll

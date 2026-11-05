@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>王宣文 Wang Hsuan Wen｜UI/UX 設計作品集</title>
+  <meta name="description" content="王宣文的 UI/UX 設計作品集：從點餐到配送一站完成，收錄線上點餐與智慧配送平台案例。">
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+
+  <header class="site-header">
+    <div class="site-header__inner container">
+      <a class="site-header__logo" href="#top" aria-label="回到首頁頂端">
+        <img src="images/logo.svg" alt="宣文 Logo" width="60" height="63">
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="開啟選單">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="主要導覽">
+        <ul class="site-nav__list">
+          <li><a href="#about">關於宣文</a></li>
+          <li><a href="ordering.html">Project 1<span class="site-nav__sep" aria-hidden="true"></span>線上點餐</a></li>
+          <li><a href="delivery.html">Project 2<span class="site-nav__sep" aria-hidden="true"></span>智慧配送平台</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero container" id="top">
+      <h1 class="hero__title">從點餐到配送一站完成</h1>
+      <p class="hero__subtitle">線上點餐 <span aria-hidden="true">×</span><span class="visually-hidden">與</span> 智慧配送</p>
+      <picture class="hero__image">
+        <source media="(min-width: 1280px)" srcset="images/hero-desktop.webp" width="1200" height="629">
+        <source media="(min-width: 800px)" srcset="images/hero-tablet.webp" width="720" height="505">
+        <img src="images/hero-mobile.webp" alt="線上點餐 App 與智慧配送平台 App 的手機畫面" width="343" height="474" fetchpriority="high">
+      </picture>
+    </section>
+
+    <section class="section about container" id="about">
+      <p class="eyebrow reveal">About</p>
+      <h2 class="reveal">嗨！我是宣文，專注介面設計與使用體驗。</h2>
+      <p class="about__text reveal">具備多項 B2C 與後台系統設計經驗，參與線上點餐、智慧配送、菜單管理、POS、BI 與發票平台等產品。擅長從需求釐清、User Flow、UI Design，將複雜業務流程轉化為清楚且具一致性的操作體驗。設計上重視可用性、資訊層級與操作效率，並持續在使用情境與商業需求之間取得平衡。</p>
+    </section>
+
+    <section class="section strengths container" aria-labelledby="strengths-title">
+      <p class="eyebrow reveal">Core Design Strengths</p>
+      <h2 id="strengths-title" class="reveal">我的設計核心能力</h2>
+      <ul class="strengths__list">
+        <li class="strength reveal">
+          <img src="images/process-01.webp" alt="" width="24" height="24" loading="lazy">
+          <h3>資訊架構與流程整理力</h3>
+          <p>梳理使用者流程，把畫面一步步引導不繞路，把複雜的事變簡單。</p>
+        </li>
+        <li class="strength reveal">
+          <img src="images/process-02.webp" alt="" width="24" height="24" loading="lazy">
+          <h3>跨職能協作與溝通力</h3>
+          <p>與 PM、工程師持續對齊需求與實作限制，讓設計兼顧體驗與落地可行性。</p>
+        </li>
+        <li class="strength reveal">
+          <img src="images/process-03.webp" alt="" width="24" height="24" loading="lazy">
+          <h3>使用者洞察與同理力</h3>
+          <p>想像「如果我是店員/顧客，這畫面我會怎麼用?」讓設計更貼地、更有溫度。</p>
+        </li>
+      </ul>
+    </section>
+
+    <figure class="section quote container reveal">
+      <picture>
+        <source media="(min-width: 1280px)" srcset="images/quote-desktop.webp" width="1200" height="620">
+        <source media="(min-width: 800px)" srcset="images/quote-tablet.webp" width="720" height="400">
+        <img src="images/quote-mobile.webp" alt="「設計不只是美感表達，更是一場跟用戶的實際對話。」" width="343" height="362" loading="lazy">
+      </picture>
+    </figure>
+
+    <article class="section case container" id="ordering" aria-labelledby="ordering-title">
+      <header class="case__header">
+        <h2 class="case__title reveal" id="ordering-title">線上點餐</h2>
+        <p class="case__summary reveal reveal--delay">突顯使用者體驗的流暢與即時性</p>
+      </header>
+      <img class="case__image reveal" src="images/ordering.webp" alt="線上點餐 App：菜單頁與選擇分店頁" width="399" height="503" loading="lazy">
+      <ol class="case__points reveal">
+        <li><span class="case__num">01</span><span>資訊架構優化 — 整合餐點分類、搜尋與門市資訊，提升內容可尋性</span></li>
+        <li><span class="case__num">02</span><span>點餐流程簡化 — 重新梳理選品至結帳流程，降低操作負擔</span></li>
+        <li><span class="case__num">03</span><span>狀態回饋明確化 — 透過即時狀態與視覺層級，提升訂單資訊辨識效率</span></li>
+      </ol>
+      <a class="btn case__btn reveal" href="ordering.html">Discover More</a>
+    </article>
+
+    <article class="section case container" id="delivery" aria-labelledby="delivery-title">
+      <header class="case__header">
+        <h2 class="case__title reveal" id="delivery-title">智慧配送平台</h2>
+        <p class="case__summary reveal reveal--delay">節省人力、提升流程，讓門市專注於最重要的顧客服務</p>
+      </header>
+      <img class="case__image reveal" src="images/delivery.webp" alt="智慧配送平台 App：啟動頁與任務列表頁" width="400" height="518" loading="lazy">
+      <ol class="case__points reveal">
+        <li><span class="case__num">01</span><span>任務流程簡化 — 梳理接單、派單到配送完成的核心操作流程</span></li>
+        <li><span class="case__num">02</span><span>資訊層級重整 — 依任務狀態分類資訊，降低大量訂單的閱讀負擔</span></li>
+        <li><span class="case__num">03</span><span>操作回饋明確化 — 強化配送狀態與任務提示，協助使用者快速判斷下一步操作</span></li>
+      </ol>
+      <a class="btn case__btn reveal" href="delivery.html">Discover More</a>
+    </article>
+  </main>
+
+  <footer class="site-footer container" id="contact">
+    <div class="site-footer__inner">
+      <img class="site-footer__icons reveal" src="images/icons.webp" alt="" width="68" height="20" loading="lazy">
+      <h2 class="site-footer__title reveal">從點餐到配送，串起完整服務體驗。</h2>
+      <address class="site-footer__contact reveal">
+        王宣文 WANG HSUAN WEN<br>
+        <a href="mailto:sunnyverna5631@gmail.com">sunnyverna5631@gmail.com</a>
+      </address>
+      <a class="btn btn--solid btn--wide reveal" href="ordering.html">
+        View Project<span class="btn__sep" aria-hidden="true"></span>線上點餐
+        <span class="btn__arrow" aria-hidden="true"></span>
+      </a>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

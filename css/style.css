@@ -1,0 +1,668 @@
+/* ==========================================================================
+   設計規格（design/design-notes.md）
+   斷點：手機 < 800px、平板 800–1279px、桌機 ≥ 1280px（mobile-first）
+   ========================================================================== */
+:root {
+  --color-primary: #33BFC2;
+  --color-secondary: #75D6D7;
+  --color-bg: #FFFFFF;
+  --color-text: #000000;
+  --color-text-muted: #6F6F6F;
+  --color-line: #E8E8E8;
+
+  --font-base: "DM Sans", "Noto Sans TC", system-ui, sans-serif;
+
+  --fs-h1: 40px;
+  --fs-h2: 20px;
+  --fs-h3: 14px;
+  --fs-body: 18px;
+  --fs-sub: 16px;
+  --fs-small: 12px;
+  --lh-body: 1.2;
+
+  --content-max: 1200px;
+  --gutter: 20px;
+  --section-gap: 40px;
+  --header-h: 80px;
+  /* hero／引言圖的最大顯示寬度＝圖片像素的一半，確保任何寬度都有 2 倍像素 */
+  --art-max: 514px;   /* 手機版圖 1029px 寬 */
+
+  --btn-h: 48px;
+  --radius-pill: 1000px;
+  --btn-fade: .4s ease;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+
+@media (min-width: 800px) {
+  :root {
+    --fs-h1: 60px;
+    --fs-h2: 40px;
+    --fs-h3: 18px;
+    --gutter: 40px;
+    --section-gap: 80px;
+    --header-h: 92px;
+    --art-max: 1080px;  /* 平板版圖 2160px 寬 */
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --section-gap: 120px;
+    --art-max: 1200px;  /* 桌機版圖 3600px 寬，受內容最大寬度 1200px 限制 */
+  }
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-h);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-base);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p, ol, ul, figure, address {
+  margin: 0;
+}
+
+h1, h2, h3 {
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+
+ol, ul {
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+}
+
+address {
+  font-style: normal;
+}
+
+.container {
+  width: 100%;
+  max-width: calc(var(--content-max) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  margin-top: var(--section-gap);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  padding: 8px 16px;
+  background: var(--color-text);
+  color: #fff;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.eyebrow {
+  margin-bottom: 8px;
+  color: var(--color-text-muted);
+  font-size: var(--fs-small);
+  letter-spacing: .02em;
+}
+
+/* ---------- Button ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: var(--btn-h);
+  padding: 0 22px;
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--radius-pill);
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background-color var(--btn-fade),
+    color var(--btn-fade),
+    border-color var(--btn-fade);
+}
+
+.btn:hover {
+  border-color: var(--color-primary);
+  background: #FFFFFF;
+  color: var(--color-primary);
+}
+
+.btn--solid {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.btn--wide {
+  width: 100%;
+  max-width: 600px;
+}
+
+.btn__sep {
+  width: 1px;
+  height: 12px;
+  background: currentColor;
+  opacity: .6;
+  transition: background-color var(--btn-fade);
+}
+
+/* 用 arrow 圖當遮罩，箭頭顏色會跟著文字色在 hover 時一起變 */
+.btn__arrow {
+  width: 7px;
+  height: 20px;
+  background: currentColor;
+  -webkit-mask: url("../images/arrow.webp") center / contain no-repeat;
+          mask: url("../images/arrow.webp") center / contain no-repeat;
+  transition: background-color var(--btn-fade);
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--color-bg);
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .06);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-h);
+}
+
+.site-header__logo img {
+  width: 44px;
+  height: auto;
+}
+
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 44px;
+  height: 44px;
+  margin-right: -10px;
+  padding: 10px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.nav-toggle__bar {
+  display: block;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: transform .25s var(--ease), opacity .2s;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.site-nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: 8px var(--gutter) 24px;
+  background: var(--color-bg);
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 12px 16px rgba(0, 0, 0, .06);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity .2s, transform .2s var(--ease), visibility 0s .2s;
+}
+
+.site-nav.is-open {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  transition: opacity .2s, transform .2s var(--ease);
+}
+
+.site-nav__list a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-line);
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color .2s;
+}
+
+.site-nav__list a:hover {
+  color: var(--color-primary);
+}
+
+.site-nav__sep {
+  width: 1px;
+  height: 14px;
+  background: currentColor;
+}
+
+@media (min-width: 800px) {
+  .site-header {
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .site-header__logo img {
+    width: 60px;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  /* 桌機和平板：導覽列置中於畫面 */
+  .site-nav {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    transition: none;
+  }
+
+  .site-header__inner {
+    position: relative;
+  }
+
+  .site-nav__list {
+    display: flex;
+    gap: 28px;
+    white-space: nowrap;
+  }
+
+  .site-nav__list a {
+    padding: 8px 0;
+    border: 0;
+    font-size: 14px;
+  }
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  padding-top: 32px;
+  text-align: center;
+}
+
+.hero__subtitle {
+  margin-top: 16px;
+  color: var(--color-text-muted);
+  font-size: 20px;
+}
+
+.hero__image img {
+  width: 100%;
+  max-width: var(--art-max);
+  margin-top: 16px;
+  margin-inline: auto;
+}
+
+@media (min-width: 800px) {
+  .hero {
+    padding-top: 48px;
+  }
+
+  .hero__subtitle {
+    margin-top: 20px;
+  }
+
+  .hero__image img {
+    margin-top: 32px;
+  }
+}
+
+/* 載入時依序淡入：主標 → 副標 → 圖片（純 CSS，不需等 JS） */
+.hero__title,
+.hero__subtitle,
+.hero__image img {
+  animation: hero-fade-in .8s var(--ease) both;
+}
+
+.hero__title    { animation-delay: .1s; }
+.hero__subtitle { animation-delay: .4s; }
+.hero__image img {
+  animation-duration: 1s;
+  animation-delay: .7s;
+}
+
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- About ---------- */
+.about h2 {
+  margin-bottom: 20px;
+}
+
+.about__text {
+  color: var(--color-text-muted);
+  font-size: var(--fs-sub); /* 手機：與能力卡片說明同大小 */
+  line-height: 1.5; /* 與能力卡片說明一致 */
+}
+
+@media (min-width: 800px) {
+  .about__text {
+    font-size: var(--fs-body);
+  }
+}
+
+/* ---------- Strengths ---------- */
+/* 與頁尾相同的分隔線：寬度＝內容欄，線下間距與頁尾一致 */
+.strengths::before {
+  content: "";
+  display: block;
+  margin-bottom: var(--section-gap);
+  border-top: 1px solid var(--color-line);
+}
+
+@media (min-width: 800px) {
+  .strengths::before {
+    margin-bottom: 120px;
+  }
+}
+
+.strengths__list {
+  display: grid;
+  gap: 40px;
+  margin-top: 32px;
+}
+
+.strength h3 {
+  margin: 16px 0 12px;
+}
+
+.strength p {
+  color: var(--color-text-muted);
+  font-size: var(--fs-sub);
+  line-height: 1.5;
+}
+
+@media (min-width: 800px) {
+  .strengths__list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px 40px;
+    margin-top: 40px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .strengths__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ---------- Quote ---------- */
+.quote img {
+  width: 100%;
+  max-width: var(--art-max);
+  margin-inline: auto;
+}
+
+/* ---------- Case ---------- */
+/* 手機：標題 → 圖 → 列表 → 按鈕；平板以上：左文右圖 */
+.case {
+  display: grid;
+  grid-template-areas:
+    "header"
+    "image"
+    "points"
+    "btn";
+}
+
+.case__header {
+  grid-area: header;
+  padding-top: 40px;
+  border-top: 1px solid var(--color-line);
+}
+
+.case__title {
+  font-size: var(--fs-h1);
+}
+
+.case__summary {
+  margin-top: 8px;
+  color: var(--color-text-muted);
+  font-size: var(--fs-sub);
+}
+
+.case__image {
+  grid-area: image;
+  justify-self: center;
+  width: 100%;
+  max-width: 400px;
+  margin-top: 24px;
+}
+
+.case__points {
+  grid-area: points;
+  margin-top: 24px;
+}
+
+.case__points li {
+  display: flex;
+  gap: 24px;
+  padding: 20px 0;
+  border-top: 1px solid var(--color-line);
+  font-size: var(--fs-sub);
+  line-height: 1.5;
+}
+
+.case__num {
+  flex: none;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.case__btn {
+  grid-area: btn;
+  justify-self: start;
+  margin-top: 24px;
+}
+
+@media (min-width: 800px) {
+  .case {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 300px);
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      "header image"
+      "points image"
+      "btn    image";
+    column-gap: 40px;
+  }
+
+  .case__header {
+    padding-top: 48px;
+  }
+
+  .case__summary {
+    margin-top: 40px;
+  }
+
+  .case__image {
+    align-self: start;
+    margin-top: 32px;
+  }
+
+  .case__points {
+    margin-top: 40px;
+  }
+
+  .case__btn {
+    align-self: start;
+    margin-top: 40px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .case {
+    grid-template-columns: minmax(0, 780px) minmax(0, 400px);
+    justify-content: space-between;
+  }
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  margin-top: var(--section-gap);
+  padding-bottom: 80px;
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: var(--section-gap);
+  border-top: 1px solid var(--color-line);
+  text-align: center;
+}
+
+.site-footer__title {
+  margin-top: 24px;
+}
+
+.site-footer__contact {
+  margin: 32px 0 40px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.site-footer__contact a {
+  text-decoration: none;
+}
+
+.site-footer__contact a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+@media (min-width: 800px) {
+  .site-footer {
+    padding-bottom: 120px;
+  }
+
+  .site-footer__inner {
+    padding-top: 120px;
+  }
+}
+
+/* ---------- Scroll reveal（只在 JS 啟用時隱藏，避免沒有 JS 時內容消失） ---------- */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .7s var(--ease), transform .7s var(--ease);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* 按鈕同時有捲動淡入和 hover 淡入，transition 要合併，否則 hover 會被蓋掉 */
+.js .btn.reveal {
+  transition:
+    opacity .7s var(--ease),
+    transform .7s var(--ease),
+    background-color var(--btn-fade),
+    color var(--btn-fade),
+    border-color var(--btn-fade);
+}
+
+/* 案例大標題先出現，簡介稍後跟上 */
+.js .reveal--delay {
+  transition-delay: .15s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero__title,
+  .hero__subtitle,
+  .hero__image img {
+    animation: none;
+  }
+}

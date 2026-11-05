@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>線上點餐｜王宣文 Wang Hsuan Wen 設計作品集</title>
+  <meta name="description" content="線上點餐案例：重新整理找店、點餐、付款到取餐的資訊層級與操作路徑，讓使用者少一點等待，多一點滿足。">
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/case.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+
+  <header class="site-header">
+    <div class="site-header__inner container">
+      <a class="site-header__logo" href="index.html" aria-label="回到首頁">
+        <img src="images/logo.svg" alt="宣文 Logo" width="60" height="63">
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="開啟選單">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="主要導覽">
+        <ul class="site-nav__list">
+          <li><a href="index.html#about">關於宣文</a></li>
+          <li><a href="ordering.html" aria-current="page">Project 1<span class="site-nav__sep" aria-hidden="true"></span>線上點餐</a></li>
+          <li><a href="delivery.html">Project 2<span class="site-nav__sep" aria-hidden="true"></span>智慧配送平台</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero hero--case container" id="top">
+      <div class="hero__text">
+        <h1 class="hero__title">少一點等待，多一點滿足。</h1>
+        <p class="hero__subtitle">突顯使用者體驗的流暢與即時性</p>
+        <ul class="tags hero__tags" aria-label="專案類型">
+          <li>Online Ordering</li>
+          <li>Web</li>
+          <li>Mobile</li>
+          <li>UI/UX</li>
+        </ul>
+        <p class="disclaimer disclaimer--hero">本案例改編自前公司專案，品牌與資料皆為虛構。</p>
+      </div>
+      <picture class="hero__image">
+        <img src="images/ordering-hero.webp" alt="線上點餐 App：菜單頁與選擇分店頁" width="560" height="726" fetchpriority="high">
+      </picture>
+    </section>
+
+    <section class="case-block container" aria-labelledby="role-title">
+      <p class="eyebrow reveal">UI Designer</p>
+      <h2 id="role-title" class="reveal">我的角色</h2>
+      <p class="case-block__text reveal">負責核心流程梳理、介面設計、元件規範與開發交付，並與 PM、工程師協作完成產品落地。</p>
+    </section>
+
+    <section class="case-block container" aria-labelledby="goal-title">
+      <p class="eyebrow reveal">Goal</p>
+      <h2 id="goal-title" class="reveal">專案目標</h2>
+      <p class="case-block__text reveal">打造從「找店 → 點餐 → 付款 → 取餐」都能快速理解下一步的線上點餐體驗，同時建立可延展的 UI 架構，支援後續功能擴充。</p>
+    </section>
+
+    <section class="case-block container" aria-labelledby="challenge-title">
+      <p class="eyebrow reveal">Challenge</p>
+      <h2 id="challenge-title" class="reveal">核心挑戰</h2>
+      <ol class="challenges">
+        <li class="challenge reveal">
+          <span class="challenge__num" aria-hidden="true">01</span>
+          <h3>店家選擇成本高</h3>
+          <p>資訊量增加後，使用者難以快速判斷適合的店家。</p>
+        </li>
+        <li class="challenge reveal">
+          <span class="challenge__num" aria-hidden="true">02</span>
+          <h3>等待資訊不透明</h3>
+          <p>下單前後缺少等待時間與訂單進度資訊。</p>
+        </li>
+        <li class="challenge reveal">
+          <span class="challenge__num" aria-hidden="true">03</span>
+          <h3>操作流程容易中斷</h3>
+          <p>付款、導覽與重要操作資訊分散，增加理解成本。</p>
+        </li>
+      </ol>
+    </section>
+
+    <p class="case-bridge container reveal">接下來針對以上問題，重新整理資訊層級、操作路徑與訂單狀態呈現。</p>
+
+    <section class="solution container" aria-labelledby="solution-01">
+      <h2 class="solution__title reveal" id="solution-01"><span class="solution__num">01</span><span class="solution__sep" aria-hidden="true"></span>降低店家選擇成本</h2>
+      <p class="solution__text reveal">將關鍵資訊前置於店家卡片，讓使用者不需逐一進入店家頁即可完成初步判斷。</p>
+      <img class="solution__image reveal" src="images/ordering-01.webp" alt="選擇分店頁：店家卡片前置營業狀態、店家資訊與等待時間" width="1200" height="490" loading="lazy">
+    </section>
+
+    <section class="solution container" aria-labelledby="solution-01-1">
+      <h2 class="solution__title reveal" id="solution-01-1"><span class="solution__num">01-1</span><span class="solution__sep" aria-hidden="true"></span>不換頁瀏覽店家詳細資訊</h2>
+      <p class="solution__text reveal">點擊卡片後以 Bottom Sheet 呈現門市重點。營業時間、電話、地址、發票資訊與支付方式，不跳頁即可比較與確認。</p>
+      <img class="solution__image reveal" src="images/ordering-01-1.webp" alt="點擊店家卡片後，以 Bottom Sheet 顯示門市詳細資訊" width="1200" height="436" loading="lazy">
+    </section>
+
+    <section class="solution container" aria-labelledby="solution-02">
+      <h2 class="solution__title reveal" id="solution-02"><span class="solution__num">02</span><span class="solution__sep" aria-hidden="true"></span>固定主要操作位置</h2>
+      <p class="solution__text reveal">固定購物車與結帳入口，持續呈現金額與下一步操作，降低操作中斷。</p>
+      <img class="solution__image solution__image--narrow reveal" src="images/ordering-02.webp" alt="菜單頁、購物車與訂單結帳頁：購物車與結帳按鈕固定在畫面下方" width="720" height="430" loading="lazy">
+    </section>
+
+    <section class="solution container" aria-labelledby="solution-03">
+      <h2 class="solution__title reveal" id="solution-03"><span class="solution__num">03</span><span class="solution__sep" aria-hidden="true"></span>降低等待過程中的不確定感</h2>
+      <p class="solution__text reveal">以階段式狀態持續回饋訂單進度，讓使用者清楚知道「現在到哪裡、接下來要做什麼」。</p>
+      <img class="solution__image solution__image--narrow reveal" src="images/ordering-03.webp" alt="結帳完成頁的三個訂單階段狀態" width="720" height="430" loading="lazy">
+    </section>
+
+    <p class="disclaimer disclaimer--end container reveal">本案例改編自我在前公司參與的專案，品牌名稱、客戶資料與數據已替換為虛構內容。介面設計沿用原專案的部分架構，僅用於說明我的設計流程。</p>
+  </main>
+
+  <footer class="site-footer container" id="contact">
+    <div class="site-footer__inner">
+      <img class="site-footer__icons reveal" src="images/icons.webp" alt="" width="68" height="20" loading="lazy">
+      <h2 class="site-footer__title reveal">謝謝您的閱讀</h2>
+      <address class="site-footer__contact reveal">
+        王宣文 WANG HSUAN WEN<br>
+        <a href="mailto:sunnyverna5631@gmail.com">sunnyverna5631@gmail.com</a>
+      </address>
+      <a class="btn btn--solid btn--wide reveal" href="delivery.html">
+        Project 2<span class="btn__sep" aria-hidden="true"></span>智慧配送平台
+        <span class="btn__arrow" aria-hidden="true"></span>
+      </a>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
