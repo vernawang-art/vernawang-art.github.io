@@ -14,11 +14,6 @@
   }
 }
 
-/* 目前所在頁面的導覽連結 */
-.site-nav__list a[aria-current="page"] {
-  color: var(--color-primary);
-}
-
 /* ---------- 區塊與分隔線 ---------- */
 /* 每個區塊上方一條與頁尾相同的細線，寬度＝內容欄 */
 .case-block,
@@ -56,9 +51,23 @@
   margin-top: 32px;
 }
 
-/* 原圖較小的開頭圖：最大顯示寬度＝原圖寬的 1/3，維持 3 倍清晰度 */
-.hero--case .hero__image--sm img {
-  max-width: 400px;
+/* 原圖左右各留 8.3% 空白（手機只佔圖寬 83.3%，線上點餐的圖佔 95.4%），
+   放大 1.145 倍讓手機看起來和線上點餐一樣大；多出的只是空白，超出版面的部分裁掉 */
+.hero--case {
+  overflow-x: clip;
+}
+
+.hero--case .hero__image.hero__image--padded img {
+  width: 114.5%;
+  max-width: 641px; /* 560px × 1.145 */
+  margin-left: calc(50% - min(57.25%, 320.5px));
+}
+
+@media (min-width: 1280px) {
+  .hero--case .hero__image.hero__image--padded img {
+    max-width: 389px; /* 340px × 1.145 */
+    margin-left: calc(50% - min(57.25%, 194.5px));
+  }
 }
 
 @media (min-width: 1280px) {
@@ -116,13 +125,30 @@
   margin-top: 32px;
 }
 
+/* 編號外層是遮罩，內層數字從遮罩下方翻上來（動畫在 js/main.js） */
 .challenge__num {
   display: block;
-  color: var(--color-text-muted);
+  overflow: hidden;
+  padding-top: .06em; /* 旋轉時數字上緣不被切到 */
+  color: var(--color-primary);
   font-size: 64px;
   font-weight: 300;
   line-height: 1;
   letter-spacing: -.02em;
+}
+
+.challenge__num-inner {
+  display: inline-block;
+  transform-origin: 0% 100%;
+}
+
+/* 編號下方的細線，動畫時由左往右畫出 */
+.challenge__rule {
+  display: block;
+  height: 1px;
+  margin-top: 16px;
+  background: var(--color-secondary);
+  transform-origin: left center;
 }
 
 .challenge h3 {
@@ -132,8 +158,9 @@
 
 .challenge p {
   color: var(--color-text-muted);
-  font-size: 14px;
+  font-size: var(--fs-sub);
   line-height: 1.5;
+  text-wrap: pretty; /* 避免最後一行只剩一個字 */
 }
 
 @media (min-width: 800px) {

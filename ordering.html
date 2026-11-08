@@ -28,7 +28,7 @@
       </button>
       <nav class="site-nav" id="site-nav" aria-label="主要導覽">
         <ul class="site-nav__list">
-          <li><a href="index.html#about">關於宣文</a></li>
+          <li><a href="index.html">關於宣文</a></li>
           <li><a href="ordering.html" aria-current="page">Project 1<span class="site-nav__sep" aria-hidden="true"></span>線上點餐</a></li>
           <li><a href="delivery.html">Project 2<span class="site-nav__sep" aria-hidden="true"></span>智慧配送平台</a></li>
         </ul>
@@ -49,9 +49,11 @@
         </ul>
         <p class="disclaimer disclaimer--hero">本案例改編自前公司專案，品牌與資料皆為虛構。</p>
       </div>
-      <picture class="hero__image">
-        <img src="images/ordering-hero.webp" alt="線上點餐 App：菜單頁與選擇分店頁" width="560" height="726" fetchpriority="high">
-      </picture>
+      <div class="soft-reveal" data-reveal-delay="0.5">
+        <picture class="hero__image soft-reveal__media">
+          <img src="images/ordering-hero.webp" alt="線上點餐 App：菜單頁與選擇分店頁" width="560" height="726" fetchpriority="high">
+        </picture>
+      </div>
     </section>
 
     <section class="case-block container" aria-labelledby="role-title">
@@ -71,17 +73,20 @@
       <h2 id="challenge-title" class="reveal">核心挑戰</h2>
       <ol class="challenges">
         <li class="challenge reveal">
-          <span class="challenge__num" aria-hidden="true">01</span>
+          <span class="challenge__num" aria-hidden="true"><span class="challenge__num-inner">01</span></span>
+          <span class="challenge__rule" aria-hidden="true"></span>
           <h3>店家選擇成本高</h3>
           <p>資訊量增加後，使用者難以快速判斷適合的店家。</p>
         </li>
         <li class="challenge reveal">
-          <span class="challenge__num" aria-hidden="true">02</span>
+          <span class="challenge__num" aria-hidden="true"><span class="challenge__num-inner">02</span></span>
+          <span class="challenge__rule" aria-hidden="true"></span>
           <h3>等待資訊不透明</h3>
           <p>下單前後缺少等待時間與訂單進度資訊。</p>
         </li>
         <li class="challenge reveal">
-          <span class="challenge__num" aria-hidden="true">03</span>
+          <span class="challenge__num" aria-hidden="true"><span class="challenge__num-inner">03</span></span>
+          <span class="challenge__rule" aria-hidden="true"></span>
           <h3>操作流程容易中斷</h3>
           <p>付款、導覽與重要操作資訊分散，增加理解成本。</p>
         </li>
@@ -132,6 +137,7 @@
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>

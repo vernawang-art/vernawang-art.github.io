@@ -28,7 +28,7 @@
       </button>
       <nav class="site-nav" id="site-nav" aria-label="主要導覽">
         <ul class="site-nav__list">
-          <li><a href="index.html#about">關於宣文</a></li>
+          <li><a href="index.html">關於宣文</a></li>
           <li><a href="ordering.html">Project 1<span class="site-nav__sep" aria-hidden="true"></span>線上點餐</a></li>
           <li><a href="delivery.html" aria-current="page">Project 2<span class="site-nav__sep" aria-hidden="true"></span>智慧配送平台</a></li>
         </ul>
@@ -48,10 +48,11 @@
         </ul>
         <p class="disclaimer disclaimer--hero">本案例改編自前公司專案，品牌與資料皆為虛構。</p>
       </div>
-      <!-- 原圖只有 1200px 寬，平板以上最多顯示 400px，維持 3 倍清晰度 -->
-      <picture class="hero__image hero__image--sm">
-        <img src="images/delivery-hero.webp" alt="智慧配送平台 App：啟動頁與任務列表頁" width="400" height="473" fetchpriority="high">
-      </picture>
+      <div class="soft-reveal" data-reveal-delay="0.5">
+        <picture class="hero__image hero__image--padded soft-reveal__media">
+          <img src="images/delivery-hero.webp" alt="智慧配送平台 App：啟動頁與任務列表頁" width="560" height="662" fetchpriority="high">
+        </picture>
+      </div>
     </section>
 
     <section class="case-block container" aria-labelledby="role-title">
@@ -71,17 +72,20 @@
       <h2 id="challenge-title" class="reveal">核心挑戰</h2>
       <ol class="challenges">
         <li class="challenge reveal">
-          <span class="challenge__num" aria-hidden="true">01</span>
+          <span class="challenge__num" aria-hidden="true"><span class="challenge__num-inner">01</span></span>
+          <span class="challenge__rule" aria-hidden="true"></span>
           <h3>配送進度難以掌握</h3>
           <p>外送任務分散於不同平台，缺乏統一的外送服務分類與狀態資訊，增加追蹤成本。</p>
         </li>
         <li class="challenge reveal">
-          <span class="challenge__num" aria-hidden="true">02</span>
+          <span class="challenge__num" aria-hidden="true"><span class="challenge__num-inner">02</span></span>
+          <span class="challenge__rule" aria-hidden="true"></span>
           <h3>運費與配送選擇不直覺</h3>
           <p>不同外送平台的運費及配送條件各異，店員需要額外時間確認與比較。</p>
         </li>
         <li class="challenge reveal">
-          <span class="challenge__num" aria-hidden="true">03</span>
+          <span class="challenge__num" aria-hidden="true"><span class="challenge__num-inner">03</span></span>
+          <span class="challenge__rule" aria-hidden="true"></span>
           <h3>手動派單耗時</h3>
           <p>重複輸入顧客資料、配送地址與派送資訊，增加操作時間及輸入錯誤的風險。</p>
         </li>
@@ -119,13 +123,14 @@
         王宣文 WANG HSUAN WEN<br>
         <a href="mailto:sunnyverna5631@gmail.com">sunnyverna5631@gmail.com</a>
       </address>
-      <a class="btn btn--solid btn--wide reveal" href="ordering.html">
-        Project 1<span class="btn__sep" aria-hidden="true"></span>線上點餐
+      <a class="btn btn--solid btn--wide reveal" href="index.html">
+        關於宣文
         <span class="btn__arrow" aria-hidden="true"></span>
       </a>
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>

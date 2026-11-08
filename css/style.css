@@ -14,10 +14,10 @@
 
   --fs-h1: 40px;
   --fs-h2: 20px;
-  --fs-h3: 14px;
+  --fs-h3: 16px;      /* 不小於內文，靠黑色與字重和灰色內文區分 */
   --fs-body: 18px;
   --fs-sub: 16px;
-  --fs-small: 12px;
+  --fs-small: 14px;   /* 小字下限：12px 灰字在手機上不易閱讀 */
   --lh-body: 1.2;
 
   --content-max: 1200px;
@@ -286,12 +286,15 @@ address {
   gap: 6px;
   padding: 14px 0;
   border-bottom: 1px solid var(--color-line);
+  color: var(--color-text-muted);
   font-size: 16px;
   font-weight: 700;
   text-decoration: none;
   transition: color .2s;
 }
 
+/* 目前所在頁面的導覽連結（首頁＝關於宣文） */
+.site-nav__list a[aria-current="page"],
 .site-nav__list a:hover {
   color: var(--color-primary);
 }
@@ -406,20 +409,189 @@ address {
   }
 }
 
+/* ---------- 首頁 Hero：眉標、按鈕、手機連結與說明 ---------- */
+/* 眉標→主標、主標→副標的文字間距相同（已扣掉各自行高的留白） */
+.hero--home .hero__eyebrow {
+  margin-bottom: 19px;
+  animation: hero-fade-in .8s var(--ease) both;
+}
+
+.hero--home .hero__title    { animation-delay: .2s; }
+
+/* 手機版在「，」後換行，不把字拆散 */
+.hero__line {
+  display: inline-block;
+}
+
+/* 首頁副標是完整句子：限制行寬，字色沿用 .hero__subtitle 的次要文字色 */
+.hero--home .hero__subtitle {
+  max-width: 34em;
+  margin-inline: auto;
+  font-size: var(--fs-sub);
+  line-height: 1.5;
+}
+
+/* 圖片用柔邊遮罩揭示（.soft-reveal），下方說明文字淡入 */
+.hero__showcase {
+  width: 100%;
+  max-width: var(--art-max);
+  margin: 24px auto 0;
+}
+
+/* 大小剛好等於圖片的框，手機連結的 ％ 才會對準。
+   底部圓角＝圖中藍綠色底板的圓角（原圖 81px），放大時角落不會被裁成直角 */
+.hero__frame {
+  position: relative;
+  border-radius: 0 0 7.87% 7.87% / 0 0 5.7% 5.7%;     /* 手機版圖 1029×1422 */
+}
+
+@media (min-width: 800px) {
+  .hero__frame {
+    border-radius: 0 0 3.75% 3.75% / 0 0 5.35% 5.35%; /* 平板版圖 2160×1515 */
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero__frame {
+    border-radius: 0 0 2.25% 2.25% / 0 0 4.29% 4.29%; /* 桌機版圖 3600×1887 */
+  }
+}
+
+.hero--home .hero__image img {
+  max-width: none;
+  margin-top: 0;
+  animation: none;
+}
+
+/* 手機在圖中的位置（％＝相對圖片寬高），三種尺寸的圖構圖不同，各自設定 */
+.hero__phone {
+  position: absolute;
+  left: var(--l);
+  top: var(--t);
+  width: var(--w);
+  height: var(--h);
+  border-radius: 12%/6%;
+}
+
+.hero__phone--ordering { --l: 8%;    --t: .5%; --w: 37%; --h: 63.5%; }
+.hero__phone--delivery { --l: 54.5%; --t: 17%; --w: 37%; --h: 64%; }
+
+.hero__labels {
+  position: relative;
+  height: 40px;
+  animation: hero-fade-in .8s var(--ease) 1.2s both;
+}
+
+.hero__label {
+  position: absolute;
+  top: 12px;
+  left: var(--x);
+  transform: translateX(-50%);
+  color: #333333;
+  font-size: 14px;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: color .2s;
+}
+
+.hero__label--ordering { --x: 26.4%; }
+.hero__label--delivery { --x: 73.1%; }
+
+/* 滑到文字或手機畫面上，對應的說明文字都會變主色 */
+.hero__label:hover,
+.hero__phone--ordering:hover ~ .hero__labels .hero__label--ordering,
+.hero__phone--delivery:hover ~ .hero__labels .hero__label--delivery {
+  color: var(--color-primary);
+}
+
+@media (min-width: 800px) {
+  .hero--home .hero__eyebrow {
+    margin-bottom: 24px;
+  }
+
+  .hero--home .hero__subtitle {
+    font-size: 20px;
+  }
+
+  .hero__showcase {
+    margin-top: 32px;
+  }
+
+  .hero__phone--ordering { --l: 23%;   --t: .5%; --w: 22%; --h: 74%; }
+  .hero__phone--delivery { --l: 50.5%; --t: 20.5%; --w: 22%; --h: 74%; }
+
+  .hero__label--ordering { --x: 34.1%; }
+  .hero__label--delivery { --x: 61.6%; }
+}
+
+@media (min-width: 1280px) {
+  .hero__phone--ordering { --l: 30.75%; --t: .5%; --w: 17%; --h: 77%; }
+  .hero__phone--delivery { --l: 52.25%; --t: 21%; --w: 17%; --h: 77%; }
+
+  .hero__label--ordering { --x: 39.3%; }
+  .hero__label--delivery { --x: 60.7%; }
+}
+
 /* ---------- About ---------- */
 .about h2 {
   margin-bottom: 20px;
 }
 
-.about__text {
+.about__text,
+.about__facts {
+  max-width: 40em; /* 約 40 個字一行，長句不會拉滿整個內容寬 */
   color: var(--color-text-muted);
   font-size: var(--fs-sub); /* 手機：與能力卡片說明同大小 */
   line-height: 1.5; /* 與能力卡片說明一致 */
 }
 
+/* 只在逗號、頓號、項目之間換行，不把詞拆開 */
+.about__phrase {
+  display: inline-block;
+}
+
+.about__text + .about__text {
+  margin-top: 16px;
+}
+
+/* 我參與過的產品／我看重的事：字級、字重、間距與核心能力卡片（.strength）一致 */
+.about__facts {
+  display: grid;
+  gap: 24px;
+  margin: 32px 0 0;
+}
+
+.about__fact dt {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
+  color: var(--color-text);
+  font-size: var(--fs-h3);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.about__star {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  fill: var(--color-primary);
+}
+
+/* 內容與小標文字左緣對齊（星星寬 18px＋間距 4px） */
+.about__fact dd {
+  margin: 0;
+  padding-left: 22px;
+}
+
 @media (min-width: 800px) {
   .about__text {
     font-size: var(--fs-body);
+  }
+
+  .about__facts {
+    margin-top: 40px;
   }
 }
 
@@ -469,10 +641,56 @@ address {
 }
 
 /* ---------- Quote ---------- */
-.quote img {
-  width: 100%;
+/* 外框圓角＝圖片本身的圓角（原圖 81px，換算成各尺寸圖的寬／高 ％），放大時角落不會被裁成直角 */
+.quote .soft-reveal {
   max-width: var(--art-max);
   margin-inline: auto;
+  border-radius: 7.87% / 7.46%;   /* 手機版圖 1029×1086 */
+}
+
+@media (min-width: 800px) {
+  .quote .soft-reveal {
+    border-radius: 3.75% / 6.75%; /* 平板版圖 2160×1200 */
+  }
+}
+
+@media (min-width: 1280px) {
+  .quote .soft-reveal {
+    border-radius: 2.25% / 4.35%; /* 桌機版圖 3600×1860 */
+  }
+}
+
+.quote img {
+  width: 100%;
+}
+
+/* ---------- 柔邊遮罩揭示 ---------- */
+/* 外框裁掉放大中的圖片。有 JS 時一開始就遮住（避免首屏圖片先閃一下），
+   動畫結束、GSAP 沒載入或偏好減少動態時，js/main.js 加上 .is-revealed 拿掉遮罩。 */
+.soft-reveal {
+  --p: -25%;
+  overflow: hidden;
+}
+
+.js .soft-reveal:not(.is-revealed) {
+  -webkit-mask-image: linear-gradient(90deg, #000 var(--p), transparent calc(var(--p) + 25%));
+          mask-image: linear-gradient(90deg, #000 var(--p), transparent calc(var(--p) + 25%));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .soft-reveal:not(.is-revealed) {
+    -webkit-mask-image: none;
+            mask-image: none;
+  }
+}
+
+.soft-reveal__media {
+  display: block;
+}
+
+/* 主視覺圖原本的淡入改由柔邊遮罩取代 */
+.soft-reveal img {
+  animation: none;
 }
 
 /* ---------- Case ---------- */
@@ -577,6 +795,158 @@ address {
   }
 }
 
+/* ---------- 案例卡片：骨架載入 ---------- */
+/* 骨架與真正內容放在同一個格子（grid-area 相同）重疊，任何寬度都對得上版面。
+   只有 JS 加上 .is-loading／.is-loaded 時才出現；沒有 JS 時直接顯示內容。 */
+.case {
+  --sk-base: rgba(117, 214, 215, .14);   /* 輔色淡淡一層，低對比 */
+  --sk-shine: rgba(255, 255, 255, .75);  /* 掃過的亮帶 */
+}
+
+.case__sk {
+  display: none;
+  pointer-events: none;
+}
+
+.case.is-loading .case__sk,
+.case.is-loaded .case__sk {
+  display: block;
+}
+
+.sk {
+  display: block;
+  background: linear-gradient(90deg,
+    var(--sk-base) 0%, var(--sk-base) 40%,
+    var(--sk-shine) 50%,
+    var(--sk-base) 60%, var(--sk-base) 100%);
+  background-size: 300% 100%;
+  border-radius: 8px;
+  animation: sk-shimmer 1.6s linear infinite;
+}
+
+/* 背景位置 100% → 0%，亮帶由左往右移動 */
+@keyframes sk-shimmer {
+  from { background-position: 100% 0; }
+  to   { background-position: 0 0; }
+}
+
+.case__sk--header {
+  grid-area: header;
+  padding-top: 40px;
+}
+
+.sk--title {
+  width: 45%;
+  height: calc(var(--fs-h1) * .8);
+}
+
+.sk--line {
+  width: 70%;
+  height: 16px;
+  margin-top: 12px;
+}
+
+.case__sk--image {
+  grid-area: image;
+  justify-self: center;
+  align-self: start;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 399 / 503;
+  margin-top: 24px;
+  border-radius: 24px;
+}
+
+.case__sk--points {
+  grid-area: points;
+  align-self: start;
+  margin-top: 24px;
+}
+
+.sk-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 0;
+  border-top: 1px solid var(--color-line);
+}
+
+.sk--dot {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.sk--bar {
+  width: 80%;
+  height: 14px;
+}
+
+.sk-row:nth-child(2) .sk--bar { width: 60%; }
+.sk-row:nth-child(3) .sk--bar { width: 70%; }
+
+.case__sk--btn {
+  grid-area: btn;
+  justify-self: start;
+  align-self: start;
+  width: 160px;
+  height: var(--btn-h);
+  margin-top: 24px;
+  border-radius: var(--radius-pill);
+}
+
+@media (min-width: 800px) {
+  .case__sk--header {
+    padding-top: 48px;
+  }
+
+  .sk--line {
+    margin-top: 40px;
+  }
+
+  .case__sk--image {
+    margin-top: 32px;
+  }
+
+  .case__sk--points,
+  .case__sk--btn {
+    margin-top: 40px;
+  }
+}
+
+/* 載入中：真正內容先隱藏 */
+.case.is-loading :is(.case__title, .case__summary, .case__image, .case__points, .case__btn),
+.case.is-loaded :is(.case__title, .case__summary, .case__image, .case__points, .case__btn) {
+  transition: opacity .6s var(--ease), transform .6s var(--ease);
+}
+
+.case.is-loading :is(.case__title, .case__summary, .case__image, .case__points, .case__btn) {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+/* 載入完成：骨架淡出，內容依序淡入並往上滑到定位 */
+.case.is-loaded .case__sk {
+  opacity: 0;
+  transition: opacity .4s ease;
+}
+
+.case.is-loaded .case__summary { transition-delay: .08s; }
+.case.is-loaded .case__image   { transition-delay: .12s; }
+.case.is-loaded .case__points  { transition-delay: .16s; }
+.case.is-loaded .case__btn     { transition-delay: .24s; }
+
+/* 按鈕本身有 hover 漸變，要一起保留 */
+.case.is-loaded .case__btn {
+  transition:
+    opacity .6s var(--ease) .24s,
+    transform .6s var(--ease) .24s,
+    background-color var(--btn-fade),
+    color var(--btn-fade),
+    border-color var(--btn-fade);
+}
+
 /* ---------- Footer ---------- */
 .site-footer {
   margin-top: var(--section-gap);
@@ -599,7 +969,7 @@ address {
 .site-footer__contact {
   margin: 32px 0 40px;
   color: var(--color-text-muted);
-  font-size: 14px;
+  font-size: var(--fs-sub);
   line-height: 1.5;
 }
 
@@ -662,7 +1032,9 @@ address {
 
   .hero__title,
   .hero__subtitle,
-  .hero__image img {
+  .hero__image img,
+  .hero--home .hero__eyebrow,
+  .hero__labels {
     animation: none;
   }
 }

@@ -27,7 +27,7 @@
       </button>
       <nav class="site-nav" id="site-nav" aria-label="主要導覽">
         <ul class="site-nav__list">
-          <li><a href="#about">關於宣文</a></li>
+          <li><a href="index.html" aria-current="page">關於宣文</a></li>
           <li><a href="ordering.html">Project 1<span class="site-nav__sep" aria-hidden="true"></span>線上點餐</a></li>
           <li><a href="delivery.html">Project 2<span class="site-nav__sep" aria-hidden="true"></span>智慧配送平台</a></li>
         </ul>
@@ -36,20 +36,43 @@
   </header>
 
   <main id="main">
-    <section class="hero container" id="top">
-      <h1 class="hero__title">從點餐到配送一站完成</h1>
-      <p class="hero__subtitle">線上點餐 <span aria-hidden="true">×</span><span class="visually-hidden">與</span> 智慧配送</p>
-      <picture class="hero__image">
-        <source media="(min-width: 1280px)" srcset="images/hero-desktop.webp" width="1200" height="629">
-        <source media="(min-width: 800px)" srcset="images/hero-tablet.webp" width="720" height="505">
-        <img src="images/hero-mobile.webp" alt="線上點餐 App 與智慧配送平台 App 的手機畫面" width="343" height="474" fetchpriority="high">
-      </picture>
+    <section class="hero hero--home container" id="top">
+      <p class="eyebrow hero__eyebrow">宣文 ｜ UI/UX Designer，近五年經驗</p>
+      <h1 class="hero__title"><span class="hero__line">從點餐到配送，</span><span class="hero__line">一站完成</span></h1>
+      <p class="hero__subtitle">從需求釐清、流程到介面與設計，把複雜的流程變得好用好懂</p>
+      <div class="hero__showcase">
+        <div class="hero__frame soft-reveal" data-reveal-delay="0.5">
+          <picture class="hero__image soft-reveal__media">
+            <source media="(min-width: 1280px)" srcset="images/hero-desktop.webp" width="1200" height="629">
+            <source media="(min-width: 800px)" srcset="images/hero-tablet.webp" width="720" height="505">
+            <img src="images/hero-mobile.webp" alt="線上點餐 App 與智慧配送平台 App 的手機畫面" width="343" height="474" fetchpriority="high">
+          </picture>
+          <!-- 點手機畫面也能進案例頁；鍵盤與螢幕報讀改用下方文字連結，避免重複 -->
+          <a class="hero__phone hero__phone--ordering" href="ordering.html" tabindex="-1" aria-hidden="true"></a>
+          <a class="hero__phone hero__phone--delivery" href="delivery.html" tabindex="-1" aria-hidden="true"></a>
+        </div>
+        <div class="hero__labels">
+          <a class="hero__label hero__label--ordering" href="ordering.html">顧客端：線上點餐</a>
+          <a class="hero__label hero__label--delivery" href="delivery.html">外送端：智慧配送</a>
+        </div>
+      </div>
     </section>
 
     <section class="section about container" id="about">
       <p class="eyebrow reveal">About</p>
-      <h2 class="reveal">嗨！我是宣文，專注介面設計與使用體驗。</h2>
-      <p class="about__text reveal">具備多項 B2C 與後台系統設計經驗，參與線上點餐、智慧配送、菜單管理、POS、BI 與發票平台等產品。擅長從需求釐清、User Flow、UI Design，將複雜業務流程轉化為清楚且具一致性的操作體驗。設計上重視可用性、資訊層級與操作效率，並持續在使用情境與商業需求之間取得平衡。</p>
+      <h2 class="reveal"><span class="about__phrase">我是宣文，</span><span class="about__phrase">近五年經驗的 UI/UX Designer</span></h2>
+      <p class="about__text reveal"><span class="about__phrase">我擅長把複雜的業務流程，</span><span class="about__phrase">轉化為清楚且具一致性的操作體驗。</span></p>
+      <p class="about__text reveal"><span class="about__phrase">從需求釐清、User Flow、Wireframe，</span><span class="about__phrase">到介面設計與設計系統文件，</span><br><span class="about__phrase">並與產品、工程團隊協作，</span><span class="about__phrase">把設計落地。</span></p>
+      <dl class="about__facts reveal">
+        <div class="about__fact">
+          <dt><svg class="about__star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.94 5.96 6.56.95-4.75 4.63 1.12 6.53L12 17.5l-5.87 3.07 1.12-6.53L2.5 9.41l6.56-.95z"/></svg>我參與過的產品</dt>
+          <dd><span class="about__phrase">線上點餐、</span><span class="about__phrase">智慧配送、</span><span class="about__phrase">菜單管理、</span><span class="about__phrase">POS、</span><span class="about__phrase">BI、</span><span class="about__phrase">發票平台等專案</span></dd>
+        </div>
+        <div class="about__fact">
+          <dt><svg class="about__star" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.94 5.96 6.56.95-4.75 4.63 1.12 6.53L12 17.5l-5.87 3.07 1.12-6.53L2.5 9.41l6.56-.95z"/></svg>我看重的事</dt>
+          <dd><span class="about__phrase">讓使用者用得順、看得懂、做得快。</span></dd>
+        </div>
+      </dl>
     </section>
 
     <section class="section strengths container" aria-labelledby="strengths-title">
@@ -74,40 +97,60 @@
       </ul>
     </section>
 
-    <figure class="section quote container reveal">
-      <picture>
-        <source media="(min-width: 1280px)" srcset="images/quote-desktop.webp" width="1200" height="620">
-        <source media="(min-width: 800px)" srcset="images/quote-tablet.webp" width="720" height="400">
-        <img src="images/quote-mobile.webp" alt="「設計不只是美感表達，更是一場跟用戶的實際對話。」" width="343" height="362" loading="lazy">
-      </picture>
+    <figure class="section quote container">
+      <!-- 柔邊遮罩揭示：外框負責遮罩，內層圖片負責縮放位移（動畫在 js/main.js） -->
+      <div class="soft-reveal">
+        <picture class="soft-reveal__media">
+          <source media="(min-width: 1280px)" srcset="images/quote-desktop.webp" width="1200" height="620">
+          <source media="(min-width: 800px)" srcset="images/quote-tablet.webp" width="720" height="400">
+          <img src="images/quote-mobile.webp" alt="「設計不只是美感表達，更是一場跟用戶的實際對話。」" width="343" height="362" loading="lazy">
+        </picture>
+      </div>
     </figure>
 
+    <!-- 案例卡片：載入中先顯示骨架（.case__sk），圖片載好後換成真正內容（切換在 js/main.js） -->
     <article class="section case container" id="ordering" aria-labelledby="ordering-title">
       <header class="case__header">
-        <h2 class="case__title reveal" id="ordering-title">線上點餐</h2>
-        <p class="case__summary reveal reveal--delay">突顯使用者體驗的流暢與即時性</p>
+        <h2 class="case__title" id="ordering-title">線上點餐</h2>
+        <p class="case__summary">突顯使用者體驗的流暢與即時性</p>
       </header>
-      <img class="case__image reveal" src="images/ordering.webp" alt="線上點餐 App：菜單頁與選擇分店頁" width="399" height="503" loading="lazy">
-      <ol class="case__points reveal">
+      <img class="case__image" src="images/ordering.webp" alt="線上點餐 App：菜單頁與選擇分店頁" width="399" height="503" loading="lazy">
+      <ol class="case__points">
         <li><span class="case__num">01</span><span>資訊架構優化 — 整合餐點分類、搜尋與門市資訊，提升內容可尋性</span></li>
         <li><span class="case__num">02</span><span>點餐流程簡化 — 重新梳理選品至結帳流程，降低操作負擔</span></li>
         <li><span class="case__num">03</span><span>狀態回饋明確化 — 透過即時狀態與視覺層級，提升訂單資訊辨識效率</span></li>
       </ol>
-      <a class="btn case__btn reveal" href="ordering.html">Discover More</a>
+      <a class="btn case__btn" href="ordering.html">Discover More</a>
+      <div class="case__sk case__sk--header" aria-hidden="true"><span class="sk sk--title"></span><span class="sk sk--line"></span></div>
+      <div class="case__sk case__sk--image sk" aria-hidden="true"></div>
+      <div class="case__sk case__sk--points" aria-hidden="true">
+        <div class="sk-row"><span class="sk sk--dot"></span><span class="sk sk--bar"></span></div>
+        <div class="sk-row"><span class="sk sk--dot"></span><span class="sk sk--bar"></span></div>
+        <div class="sk-row"><span class="sk sk--dot"></span><span class="sk sk--bar"></span></div>
+      </div>
+      <div class="case__sk case__sk--btn sk" aria-hidden="true"></div>
     </article>
 
     <article class="section case container" id="delivery" aria-labelledby="delivery-title">
       <header class="case__header">
-        <h2 class="case__title reveal" id="delivery-title">智慧配送平台</h2>
-        <p class="case__summary reveal reveal--delay">節省人力、提升流程，讓門市專注於最重要的顧客服務</p>
+        <h2 class="case__title" id="delivery-title">智慧配送平台</h2>
+        <p class="case__summary">節省人力、提升流程，讓門市專注於最重要的顧客服務</p>
       </header>
-      <img class="case__image reveal" src="images/delivery.webp" alt="智慧配送平台 App：啟動頁與任務列表頁" width="400" height="518" loading="lazy">
-      <ol class="case__points reveal">
+      <img class="case__image" src="images/delivery.webp" alt="智慧配送平台 App：啟動頁與任務列表頁" width="400" height="518" loading="lazy">
+      <ol class="case__points">
         <li><span class="case__num">01</span><span>任務流程簡化 — 梳理接單、派單到配送完成的核心操作流程</span></li>
         <li><span class="case__num">02</span><span>資訊層級重整 — 依任務狀態分類資訊，降低大量訂單的閱讀負擔</span></li>
         <li><span class="case__num">03</span><span>操作回饋明確化 — 強化配送狀態與任務提示，協助使用者快速判斷下一步操作</span></li>
       </ol>
-      <a class="btn case__btn reveal" href="delivery.html">Discover More</a>
+      <a class="btn case__btn" href="delivery.html">Discover More</a>
+      <div class="case__sk case__sk--header" aria-hidden="true"><span class="sk sk--title"></span><span class="sk sk--line"></span></div>
+      <div class="case__sk case__sk--image sk" aria-hidden="true"></div>
+      <div class="case__sk case__sk--points" aria-hidden="true">
+        <div class="sk-row"><span class="sk sk--dot"></span><span class="sk sk--bar"></span></div>
+        <div class="sk-row"><span class="sk sk--dot"></span><span class="sk sk--bar"></span></div>
+        <div class="sk-row"><span class="sk sk--dot"></span><span class="sk sk--bar"></span></div>
+      </div>
+      <div class="case__sk case__sk--btn sk" aria-hidden="true"></div>
     </article>
   </main>
 
@@ -126,6 +169,7 @@
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>
